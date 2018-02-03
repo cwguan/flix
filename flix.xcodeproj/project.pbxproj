@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D223F15202655D800D678A0 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D223F14202655D800D678A0 /* NowPlayingViewController.swift */; };
+		9D223F17202662F100D678A0 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D223F16202662F100D678A0 /* MovieCell.swift */; };
 		9DD69F3F20214EBB0066262F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD69F3E20214EBB0066262F /* AppDelegate.swift */; };
 		9DD69F4420214EBB0066262F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DD69F4220214EBB0066262F /* Main.storyboard */; };
 		9DD69F4620214EBB0066262F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DD69F4520214EBB0066262F /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		9D223F14202655D800D678A0 /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
+		9D223F16202662F100D678A0 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		9DD69F3B20214EBB0066262F /* flix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD69F3E20214EBB0066262F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DD69F4320214EBB0066262F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				9DD69F4720214EBB0066262F /* LaunchScreen.storyboard */,
 				9DD69F4A20214EBB0066262F /* Info.plist */,
 				9D223F14202655D800D678A0 /* NowPlayingViewController.swift */,
+				9D223F16202662F100D678A0 /* MovieCell.swift */,
 			);
 			path = flix;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			files = (
 				9D223F15202655D800D678A0 /* NowPlayingViewController.swift in Sources */,
 				9DD69F3F20214EBB0066262F /* AppDelegate.swift in Sources */,
+				9D223F17202662F100D678A0 /* MovieCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
