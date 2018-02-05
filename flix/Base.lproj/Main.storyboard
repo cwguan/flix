@@ -53,6 +53,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="overviewLabel" destination="fHi-9z-vO7" id="thv-wD-X3g"/>
+                                            <outlet property="posterImageView" destination="P5B-vH-CZS" id="oML-f9-vSt"/>
                                             <outlet property="titleLabel" destination="tNn-LJ-En2" id="QZ9-Ji-ki4"/>
                                         </connections>
                                     </tableViewCell>
