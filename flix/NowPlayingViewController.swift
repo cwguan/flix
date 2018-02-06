@@ -14,14 +14,27 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
     var movies: [[String: Any]] = []
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(NowPlayingViewController.didPullToRefresh(_:)), for: .valueChanged)
+        
+        tableView.insertSubview(refreshControl, at: 0)
         
         tableView.dataSource = self
+        
+        fetchMovies()
 
         self.tableView.rowHeight = 200
-        
+    }
+    
+    @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        fetchMovies()
+    }
+    
+    func fetchMovies() {
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -34,12 +47,14 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                 
                 // TODO: Get the array of movies
                 let movies = dataDictionary["results"] as! [[String: Any]]
-
+                
                 // TODO: Store the movies in a property to use elsewhere
                 self.movies = movies
                 
                 // TODO: Reload your table view data
                 self.tableView.reloadData()
+                
+                self.refreshControl.endRefreshing()
             }
         }
         task.resume()
