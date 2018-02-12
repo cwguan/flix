@@ -28,8 +28,6 @@ class TrailerViewController: UIViewController {
             let request = URLRequest(url: url)
             trailerWebView.loadRequest(request)
         }
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

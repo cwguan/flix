@@ -25,15 +25,14 @@ class DetailViewController: UIViewController {
     
     var movie: [String: Any]?
     var trailerKey: String!
+
     
-    @IBAction func posterTap(_ sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "trailerSegue", sender: nil)
-    }
-    
+    // didTap function to initiate segue to the UIWebView for trailer
     @objc func didTap(sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "trailerSegue", sender: nil)
     }
     
+    // Passes trailer key prior to segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationViewController = segue.destination as! TrailerViewController
         destinationViewController.trailerKeyURL = self.trailerKey
@@ -43,6 +42,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Populate various labels and images on DetailView
         if let movie = movie {
             titleLabel.text = movie[MovieKeys.title] as? String
             releaseDateLabel.text = movie["release_date"] as? String
@@ -59,11 +59,12 @@ class DetailViewController: UIViewController {
             posterImageView.af_setImage(withURL: posterPathURL)
         }
         
+        // Creates a tap recognizer fo tapping on movie poster
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap(sender:)))
         posterImageView.isUserInteractionEnabled = true
         posterImageView.addGestureRecognizer(tapGestureRecognizer)
         
-        // Transfer Trailer URL
+        // Performs network request for the trailer URL from movie database
         if let movie = movie {
             let movieID = String(format: "%@", movie["id"] as! CVarArg)
             let requestURLString = "https://api.themoviedb.org/3/movie/" + movieID + "/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US"
