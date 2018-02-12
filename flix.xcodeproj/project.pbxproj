@@ -14,6 +14,7 @@
 		9D3EFC9F202A325D00E7E027 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3EFC9E202A325D00E7E027 /* DetailViewController.swift */; };
 		9D7F3213202A818D0034D711 /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F3212202A818D0034D711 /* PosterCell.swift */; };
 		9D7F3215202A81D40034D711 /* SuperheroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7F3214202A81D40034D711 /* SuperheroViewController.swift */; };
+		9DB02E5E20315328007A2539 /* TrailerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB02E5D20315328007A2539 /* TrailerViewController.swift */; };
 		9DD69F3F20214EBB0066262F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD69F3E20214EBB0066262F /* AppDelegate.swift */; };
 		9DD69F4420214EBB0066262F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DD69F4220214EBB0066262F /* Main.storyboard */; };
 		9DD69F4620214EBB0066262F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DD69F4520214EBB0066262F /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		9D3EFC9E202A325D00E7E027 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9D7F3212202A818D0034D711 /* PosterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCell.swift; sourceTree = "<group>"; };
 		9D7F3214202A81D40034D711 /* SuperheroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroViewController.swift; sourceTree = "<group>"; };
+		9DB02E5D20315328007A2539 /* TrailerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerViewController.swift; sourceTree = "<group>"; };
 		9DD69F3B20214EBB0066262F /* flix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DD69F3E20214EBB0066262F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DD69F4320214EBB0066262F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				9D223F14202655D800D678A0 /* NowPlayingViewController.swift */,
 				9D3EFC9E202A325D00E7E027 /* DetailViewController.swift */,
 				9D7F3214202A81D40034D711 /* SuperheroViewController.swift */,
+				9DB02E5D20315328007A2539 /* TrailerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 			files = (
 				9D223F15202655D800D678A0 /* NowPlayingViewController.swift in Sources */,
 				9D7F3213202A818D0034D711 /* PosterCell.swift in Sources */,
+				9DB02E5E20315328007A2539 /* TrailerViewController.swift in Sources */,
 				9D7F3215202A81D40034D711 /* SuperheroViewController.swift in Sources */,
 				9DD69F3F20214EBB0066262F /* AppDelegate.swift in Sources */,
 				9D223F17202662F100D678A0 /* MovieCell.swift in Sources */,
