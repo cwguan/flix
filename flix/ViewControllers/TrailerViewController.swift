@@ -14,6 +14,9 @@ class TrailerViewController: UIViewController {
     
     var trailerKeyURL: String!
     
+    @IBAction func didPressDone(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
