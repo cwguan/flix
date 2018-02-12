@@ -24,7 +24,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var overviewLabel: UILabel!
     
     var movie: [String: Any]?
-    var trailerKey: String?
+    var trailerKey: String!
     
     @IBAction func posterTap(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "trailerSegue", sender: nil)
@@ -36,28 +36,8 @@ class DetailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationViewController = segue.destination as! TrailerViewController
+        destinationViewController.trailerKeyURL = self.trailerKey
         
-        // Transfer Trailer URL
-        if let movie = movie {
-            let movieID = String(format: "%@", movie["id"] as! CVarArg)
-            let requestURLString = "https://api.themoviedb.org/3/movie/" + movieID + "/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US"
-            let url = URL(string: requestURLString)!
-            let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-            let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-            let task = session.dataTask(with: request) { (data, response, error) in
-                // This will run when the network request returns
-                if let error = error {
-                    print(error.localizedDescription)
-                } else if let data = data {
-                    let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                    let videos = dataDictionary["results"] as! [[String: Any]]
-                    self.trailerKey = videos[0]["key"] as? String
-                }
-            }
-            task.resume()
-        }
-        
-        destinationViewController.trailerKey = self.trailerKey
     }
     
     override func viewDidLoad() {
@@ -82,6 +62,27 @@ class DetailViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap(sender:)))
         posterImageView.isUserInteractionEnabled = true
         posterImageView.addGestureRecognizer(tapGestureRecognizer)
+        
+        // Transfer Trailer URL
+        if let movie = movie {
+            let movieID = String(format: "%@", movie["id"] as! CVarArg)
+            let requestURLString = "https://api.themoviedb.org/3/movie/" + movieID + "/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US"
+            let url = URL(string: requestURLString)!
+            let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+            let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+            let task = session.dataTask(with: request) { (data, response, error) in
+                // This will run when the network request returns
+                if let error = error {
+                    print(error.localizedDescription)
+                } else if let data = data {
+                    let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                    let videos = dataDictionary["results"] as! [[String: Any]]
+                    self.trailerKey = videos[0]["key"] as? String
+                    print(self.trailerKey)
+                }
+            }
+            task.resume()
+        }
         
     }
 

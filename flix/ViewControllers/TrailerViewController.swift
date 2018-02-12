@@ -12,14 +12,15 @@ class TrailerViewController: UIViewController {
 
     @IBOutlet weak var trailerWebView: UIWebView!
     
-    var trailerKey: String!
+    var trailerKeyURL: String!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let trailerKey = trailerKey {
-            let requestURLString = "https://www.youtube.com/watch?v=" + trailerKey
+
+        if let trailerKeyURL = trailerKeyURL {
+            print(trailerKeyURL + " in let")
+            let requestURLString = "https://www.youtube.com/watch?v=" + trailerKeyURL
             let url = URL(string: requestURLString)!
             let request = URLRequest(url: url)
             trailerWebView.loadRequest(request)
