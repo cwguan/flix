@@ -262,9 +262,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tdA-dS-Hs1">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tdA-dS-Hs1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="9" minimumInteritemSpacing="10" id="Gyr-pf-v8w">
                                     <size key="itemSize" width="125" height="200"/>
@@ -300,6 +299,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tdA-dS-Hs1" firstAttribute="leading" secondItem="ziI-dV-hm3" secondAttribute="leading" id="CSl-WX-2BO"/>
+                            <constraint firstItem="tdA-dS-Hs1" firstAttribute="trailing" secondItem="ziI-dV-hm3" secondAttribute="trailing" id="Qg8-Tp-7Xb"/>
+                            <constraint firstAttribute="bottom" secondItem="tdA-dS-Hs1" secondAttribute="bottom" id="f85-5E-zPA"/>
+                            <constraint firstItem="tdA-dS-Hs1" firstAttribute="top" secondItem="gMf-TJ-d9V" secondAttribute="top" id="yBZ-uZ-4h1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ziI-dV-hm3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Superhero" id="hMI-aF-hwa"/>
