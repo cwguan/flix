@@ -29,7 +29,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         
         fetchMovies()
 
-        self.tableView.rowHeight = 180
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 50
         
         activityIndicator.stopAnimating()
     }
