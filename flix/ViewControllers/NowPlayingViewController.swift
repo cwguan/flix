@@ -52,12 +52,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let movieDictionaries = dataDictionary["results"] as! [[String: Any]]
                 
-                // Store in new Movie array using model
-                self.movies = []
-                for dictionary in movieDictionaries {
-                    let movie = Movie(dictionary: dictionary)
-                    self.movies.append(movie)
-                }
+                // Store in new Movie array using model & class func
+                self.movies = Movie.movies(dictionaries: movieDictionaries)
                 
                 // TODO: Reload your table view data
                 self.tableView.reloadData()
@@ -83,7 +79,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         cell.overviewLabel.text = overview
         
         // Retrieves URL path to poster and displays it using Alamofire
-        let posterURL = movie.posterUrl!
+        let posterURL = movie.posterURL!
         cell.posterImageView.af_setImage(withURL: posterURL)
         
         return cell

@@ -13,22 +13,24 @@ class Movie {
     var overview: String
     var releaseDate: String
     var trailerKey: String?
+    var id: String?
     
-    var backdropUrl: URL?
-    var posterUrl: URL?
+    var backdropURL: URL?
+    var posterURL: URL?
     
     init(dictionary: [String: Any]) {
         title = dictionary["title"] as? String ?? "No title"
         overview = dictionary["overview"] as? String ?? "No overview"
         releaseDate = dictionary["release_date"] as? String ?? "No Release Data"
+        id = dictionary["id"] as? String ?? "No id"
         
         // Get the path string to the backdrop and poster
         let posterPathString = dictionary["poster_path"] as! String
         let backdropPathString = dictionary["backdrop_path"] as! String
         let baseURLString = "https://image.tmdb.org/t/p/w500"
         
-        backdropUrl = URL(string: baseURLString + backdropPathString)!
-        posterUrl = URL(string: baseURLString + posterPathString)!
+        backdropURL = URL(string: baseURLString + backdropPathString)!
+        posterURL = URL(string: baseURLString + posterPathString)!
         
         // Get the trailerKey
         let movieID = String(format: "%@", dictionary["id"] as! CVarArg)
@@ -48,6 +50,16 @@ class Movie {
             }
         }
         task.resume()
+    }
+    
+    class func movies(dictionaries: [[String: Any]]) -> [Movie] {
+        var movies: [Movie] = []
+        for dictionary in dictionaries {
+            let movie = Movie(dictionary: dictionary)
+            movies.append(movie)
+        }
+        
+        return movies
     }
     
 }

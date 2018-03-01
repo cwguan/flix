@@ -12,8 +12,8 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var movies:[[String: Any]] = []
-    
+    //var movies:[[String: Any]] = []
+    var movies: [Movie] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +46,10 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 
                 // TODO: Get the array of movies
-                let movies = dataDictionary["results"] as! [[String: Any]]
+                let movieDictionaries = dataDictionary["results"] as! [[String: Any]]
                 
                 // TODO: Store the movies in a property to use elsewhere
-                self.movies = movies
+                self.movies = Movie.movies(dictionaries: movieDictionaries)
                 
                 // TODO: Reload your table view data
                 self.collectionView.reloadData()
@@ -70,13 +70,14 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PosterCell", for: indexPath) as! PosterCell
         
         let movie = movies[indexPath.item]
+        cell.posterImageView.af_setImage(withURL: movie.posterURL!)
         
-        if let posterPathString = movie["poster_path"] as? String {
-            let baseURLString = "https://image.tmdb.org/t/p/w500"
-            let posterURL = URL(string: baseURLString + posterPathString)!
-            
-            cell.posterImageView.af_setImage(withURL: posterURL)
-        }
+//        if let posterPathString = movie["poster_path"] as? String {
+//            let baseURLString = "https://image.tmdb.org/t/p/w500"
+//            let posterURL = URL(string: baseURLString + posterPathString)!
+//
+//            cell.posterImageView.af_setImage(withURL: posterURL)
+//        }
         return cell
     }
     

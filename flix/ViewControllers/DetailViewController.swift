@@ -54,10 +54,10 @@ class DetailViewController: UIViewController {
             //let baseURLString = "https://image.tmdb.org/t/p/w500"
             
             //let backdropURL = URL(string: baseURLString + backdropPathString)!
-            backDropImageView.af_setImage(withURL: movie.backdropUrl)
+            backDropImageView.af_setImage(withURL: movie.backdropURL)
             
             //let posterPathURL = URL(string: baseURLString + posterPathString)!
-            posterImageView.af_setImage(withURL: movie.posterUrl)
+            posterImageView.af_setImage(withURL: movie.posterURL)
         }
         
         // Creates a tap recognizer fo tapping on movie poster
@@ -67,7 +67,8 @@ class DetailViewController: UIViewController {
         
         // Performs network request for the trailer URL from movie database
         if let movie = movie {
-            let movieID = String(format: "%@", movie["id"] as! CVarArg)
+            let movieID = String(format: "%@", movie.id
+                as! CVarArg)
             let requestURLString = "https://api.themoviedb.org/3/movie/" + movieID + "/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US"
             let url = URL(string: requestURLString)!
             let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
