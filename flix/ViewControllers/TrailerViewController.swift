@@ -22,7 +22,6 @@ class TrailerViewController: UIViewController {
         super.viewDidLoad()
 
         if let trailerKeyURL = trailerKeyURL {
-            print(trailerKeyURL + " in let")
             let requestURLString = "https://www.youtube.com/watch?v=" + trailerKeyURL
             let url = URL(string: requestURLString)!
             let request = URLRequest(url: url)
@@ -34,16 +33,5 @@ class TrailerViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -14,9 +14,9 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    //var movies: [[String: Any]] = []
     var movies: [Movie] = []
     var refreshControl: UIRefreshControl!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +36,11 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         activityIndicator.stopAnimating()
     }
     
+    
     @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
         fetchMovies()
     }
+    
     
     func fetchMovies() {
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
@@ -55,28 +57,25 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                 // Store in new Movie array using model & class func
                 self.movies = Movie.movies(dictionaries: movieDictionaries)
                 
-                // TODO: Reload your table view data
                 self.tableView.reloadData()
-                
                 self.refreshControl.endRefreshing()
             }
         }
         task.resume()
     }
 
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
         let movie = movies[indexPath.row]
-        let title = movie.title as! String
-        let overview = movie.overview as! String
-        
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
+        cell.titleLabel.text = movie.title
+        cell.overviewLabel.text = movie.overview
         
         // Retrieves URL path to poster and displays it using Alamofire
         let posterURL = movie.posterURL!
@@ -96,11 +95,11 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         
     }
     
+    
     // Removes gray selection effect
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
     
     
     override func didReceiveMemoryWarning() {

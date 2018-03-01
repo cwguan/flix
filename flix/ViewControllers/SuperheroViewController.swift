@@ -12,13 +12,14 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    //var movies:[[String: Any]] = []
     var movies: [Movie] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         collectionView.dataSource = self
+        fetchMovies()
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.minimumInteritemSpacing = 5
@@ -29,7 +30,6 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
         let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal/cellsPerLine
         layout.itemSize = CGSize(width: width, height: width * 3/2 )
         
-        fetchMovies()
     }
     
     
@@ -51,10 +51,8 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
                 // TODO: Store the movies in a property to use elsewhere
                 self.movies = Movie.movies(dictionaries: movieDictionaries)
                 
-                // TODO: Reload your table view data
                 self.collectionView.reloadData()
                 
-                //self.refreshControl.endRefreshing()
             }
         }
         task.resume()
@@ -72,12 +70,6 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
         let movie = movies[indexPath.item]
         cell.posterImageView.af_setImage(withURL: movie.posterURL!)
         
-//        if let posterPathString = movie["poster_path"] as? String {
-//            let baseURLString = "https://image.tmdb.org/t/p/w500"
-//            let posterURL = URL(string: baseURLString + posterPathString)!
-//
-//            cell.posterImageView.af_setImage(withURL: posterURL)
-//        }
         return cell
     }
     
@@ -98,15 +90,4 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
