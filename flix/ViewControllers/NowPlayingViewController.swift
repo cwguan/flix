@@ -74,13 +74,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
         let movie = movies[indexPath.row]
-        cell.titleLabel.text = movie.title
-        cell.overviewLabel.text = movie.overview
-        
-        // Retrieves URL path to poster and displays it using Alamofire
-        let posterURL = movie.posterURL!
-        cell.posterImageView.af_setImage(withURL: posterURL)
-        
+        cell.movie = movie
         return cell
     }
     
