@@ -18,6 +18,7 @@ class Movie {
     var backdropURL: URL?
     var posterURL: URL?
     
+    
     init(dictionary: [String: Any]) {
         title = dictionary["title"] as? String ?? "No title"
         overview = dictionary["overview"] as? String ?? "No overview"
@@ -29,6 +30,7 @@ class Movie {
         let backdropPathString = dictionary["backdrop_path"] as! String
         let baseURLString = "https://image.tmdb.org/t/p/w500"
         
+        // Use strings to create URLs from poster and backdrop
         backdropURL = URL(string: baseURLString + backdropPathString)!
         posterURL = URL(string: baseURLString + posterPathString)!
         
@@ -46,12 +48,13 @@ class Movie {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let videos = dataDictionary["results"] as! [[String: Any]]
                 self.trailerKey = videos[0]["key"] as? String
-                
             }
         }
         task.resume()
     }
     
+    
+    // Helper function to create an array of Movies from an array of dictionaries
     class func movies(dictionaries: [[String: Any]]) -> [Movie] {
         var movies: [Movie] = []
         for dictionary in dictionaries {
