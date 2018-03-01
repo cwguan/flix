@@ -14,7 +14,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var movies: [[String: Any]] = []
+    //var movies: [[String: Any]] = []
+    var movies: [Movie] = []
     var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
@@ -49,12 +50,14 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                 print(error.localizedDescription)
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                let movieDictionaries = dataDictionary["results"] as! [[String: Any]]
                 
-                // TODO: Get the array of movies
-                let movies = dataDictionary["results"] as! [[String: Any]]
-                
-                // TODO: Store the movies in a property to use elsewhere
-                self.movies = movies
+                // Store in new Movie array using model
+                self.movies = []
+                for dictionary in movieDictionaries {
+                    let movie = Movie(dictionary: dictionary)
+                    self.movies.append(movie)
+                }
                 
                 // TODO: Reload your table view data
                 self.tableView.reloadData()
@@ -73,16 +76,14 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
         let movie = movies[indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
+        let title = movie.title as! String
+        let overview = movie.overview as! String
         
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
         
         // Retrieves URL path to poster and displays it using Alamofire
-        let posterPathString = movie["poster_path"] as! String
-        let baseURLString = "https://image.tmdb.org/t/p/w500"
-        let posterURL = URL(string: baseURLString + posterPathString)!
+        let posterURL = movie.posterUrl!
         cell.posterImageView.af_setImage(withURL: posterURL)
         
         return cell
